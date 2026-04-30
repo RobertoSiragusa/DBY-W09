@@ -967,12 +967,12 @@ int create_lo_d_child(struct inode *i_parent, struct dentry *d_child,
 					       rec_op_para);
 		dput(d_pparent);
 		if (unlikely(ret)) {
-			lo_d_child = ERR_PTR(ret);
+
 			goto out;
 		}
 		lo_d_parent = hmdfs_get_lo_d(d_parent, HMDFS_DEVID_LOCAL);
 		if (!lo_d_parent) {
-			lo_d_child = ERR_PTR(-ENOENT);
+			ret = -ENOENT;
 			goto out;
 		}
 	}

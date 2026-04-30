@@ -16,3 +16,5 @@ f2fs-$(CONFIG_F2FS_FS_POSIX_ACL) += acl.o
 f2fs-$(CONFIG_HWDPS) += hwdps_context.o
 f2fs-$(CONFIG_F2FS_TURBO_ZONE) += turbo_zone.o
 f2fs-$(CONFIG_SDP_ENCRYPTION) += sdp_context.o
+
+subdir-ccflags-y += -I$(srctree)

@@ -26,3 +26,4 @@ EXTRA_CFLAGS += -I$(srctree)/drivers/staging/android \
 		-I$(srctree)/techpack/display/include/uapi/display \
 		-I$(srctree)/drivers/clk/qcom \
 		-I$(srctree)/drivers/base
+ccflags-y += -I$(srctree)/drivers/devkit/lcdkit/lcdkit3.0/kernel/qcom/adapt
