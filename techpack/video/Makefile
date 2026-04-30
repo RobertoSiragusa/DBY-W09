@@ -28,3 +28,4 @@ LINUXINCLUDE    += -include $(srctree)/techpack/video/config/bengalvidconf.h
 endif
 
 obj-y +=msm/
+subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers

@@ -9,9 +9,9 @@
 #undef TRACE_SYSTEM
 #define TRACE_SYSTEM camera
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH techpack/camera/drivers/cam_utils
 #undef TRACE_INCLUDE_FILE
-#define TRACE_INCLUDE_FILE ../../techpack/camera/drivers/cam_utils/cam_trace
+#define TRACE_INCLUDE_FILE cam_trace
 
 #include <linux/tracepoint.h>
 #include <media/cam_req_mgr.h>

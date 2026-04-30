@@ -43,3 +43,4 @@ proc-$(CONFIG_TASK_PROTECT_LRU)	 += protect_lru.o
 proc-$(CONFIG_MEMCG_PROTECT_LRU) += protect_lru.o
 proc-$(CONFIG_HW_SENSOR_INFO) += hw_sensor_info.o
 obj-$(CONFIG_HW_LOWMEM_DBG) += lmkd_dbg_trigger.o
+subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers

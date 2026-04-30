@@ -28,3 +28,4 @@ endif
 obj-$(CONFIG_DRM_MSM) += msm/
 obj-$(CONFIG_MSM_SDE_ROTATOR) += rotator/
 obj-$(CONFIG_QCOM_MDSS_PLL) += pll/
+subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers

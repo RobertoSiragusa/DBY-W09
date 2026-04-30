@@ -42,3 +42,4 @@ obj-y += drivers/
 else
 $(info Target not found)
 endif
+subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers

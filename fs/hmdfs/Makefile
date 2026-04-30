@@ -77,3 +77,4 @@ rebuild:
 endif
 
 .PHONY : all clean rebuild
+subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers
