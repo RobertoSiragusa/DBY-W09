@@ -1027,6 +1027,6 @@ TRACE_EVENT(hmdfs_server_open_exit,
 
 #undef TRACE_INCLUDE_PATH
 #undef TRACE_INCLUDE_FILE
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH fs/hmdfs
 #define TRACE_INCLUDE_FILE hmdfs_trace
 #include <trace/define_trace.h>

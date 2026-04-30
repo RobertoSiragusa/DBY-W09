@@ -100,7 +100,7 @@ TRACE_EVENT(touch,
 /* NOTICE! The #if protection ends here. */
 #undef TRACE_INCLUDE_PATH
 #undef TRACE_INCLUDE_FILE
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH drivers/devkit/tpkit/3_0
 /*
  * TRACE_INCLUDE_FILE is not needed if the filename and TRACE_SYSTEM are equal
  */

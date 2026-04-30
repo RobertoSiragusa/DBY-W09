@@ -84,7 +84,7 @@ DEFINE_EVENT(d2dp_timer_template,
 /* Make traces from local file and not from trace/events directory */
 #undef TRACE_INCLUDE_PATH
 #undef TRACE_INCLUDE_FILE
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH fs/hmdfs/d2dp
 #define TRACE_INCLUDE_FILE trace
 #include <trace/define_trace.h>
 
