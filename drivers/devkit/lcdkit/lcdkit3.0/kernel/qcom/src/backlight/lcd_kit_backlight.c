@@ -1019,7 +1019,7 @@ static int lcd_kit_backlight_ic_config(void)
 	return ret;
 }
 
-static int lcd_kit_gpio_dual_request()
+static int lcd_kit_gpio_dual_request(void)
 {
 	int ret;
 

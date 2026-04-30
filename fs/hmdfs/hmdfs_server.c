@@ -1481,6 +1481,7 @@ void hmdfs_server_rename(struct hmdfs_peer *con, struct hmdfs_head_cmd *cmd,
 	new_path_len = le32_to_cpu(recv->new_path_len);
 	old_name_len = le32_to_cpu(recv->old_name_len);
 	new_name_len = le32_to_cpu(recv->new_name_len);
+	(void)new_name_len;
 	flags = le32_to_cpu(recv->flags);
 
 	path_old = recv->path;

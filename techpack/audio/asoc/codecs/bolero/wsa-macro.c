@@ -2152,6 +2152,7 @@ static int wsa_macro_spkr_left_boost_stage_put(struct snd_kcontrol *kcontrol,
 	dev_dbg(component->dev, "%s: ucontrol->value.integer.value[0]  = %ld\n",
 		__func__, ucontrol->value.integer.value[0]);
 	bst_state_max =  ucontrol->value.integer.value[0] << 2;
+	(void)bst_state_max;
 	/* bolero does not need to limit the boost levels */
 
 	return 0;
@@ -2184,6 +2185,7 @@ static int wsa_macro_spkr_right_boost_stage_put(struct snd_kcontrol *kcontrol,
 	dev_dbg(component->dev, "%s: ucontrol->value.integer.value[0]  = %ld\n",
 		__func__, ucontrol->value.integer.value[0]);
 	bst_state_max =  ucontrol->value.integer.value[0] << 2;
+	(void)bst_state_max;
 	/* bolero does not need to limit the boost levels */
 
 	return 0;

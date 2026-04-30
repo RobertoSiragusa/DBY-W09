@@ -34,3 +34,4 @@ obj-$(CONFIG_SCHED_CORE_CTL) += core_ctl.o
 obj-$(CONFIG_PSI) += psi.o
 obj-$(CONFIG_HW_RTG) += hw_rtg/
 obj-$(CONFIG_SCHED_PERF_CTRL) += sched_perf_ctrl.o
+ccflags-y += -I$(srctree)/kernel/sched
