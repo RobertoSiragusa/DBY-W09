@@ -46,7 +46,7 @@
 static struct icn68116_device_info *icn68116_client = NULL;
 static bool is_icn68116_device = false;
 
-static void icn68116_enable()
+static void icn68116_enable(void)
 {
 	if (icn68116_client != NULL) {
 		gpiod_set_value_cansleep(gpio_to_desc(icn68116_client->config.vsp_enable), VSP_ENABLE);
