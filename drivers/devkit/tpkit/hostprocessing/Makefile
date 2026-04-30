@@ -1,3 +1,4 @@
+EXTRA_CFLAGS += -I$(srctree)/drivers/devkit/tpkit/hostprocessing
 EXTRA_CFLAGS += -I$(srctree)/drivers/hwspinlock
 EXTRA_CFLAGS += -I$(srctree)/drivers/hwsensor/apsensor_channel
 EXTRA_CFLAGS += -Idrivers/video/fbdev/hisi/dss

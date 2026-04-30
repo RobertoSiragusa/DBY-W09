@@ -42,7 +42,7 @@
 #include <../kernel/sched/tune.h>
 #include <../kernel/sched/walt.h>
 #include <../../drivers/misc/mediatek/sched/sched_ctl.h>
-#include <../kernel/sched/eas_plus.h>
+#include "../kernel/sched/eas_plus.h"
 #endif
 
 #ifdef CONFIG_HW_EAS_SCHED
