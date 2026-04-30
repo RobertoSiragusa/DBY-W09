@@ -52,7 +52,7 @@ TRACE_EVENT(f2fs_cold_file_should_IPU,
 #ifdef CREATE_TRACE_POINTS
 #undef TRACE_INCLUDE_PATH
 #undef TRACE_INCLUDE_FILE
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH fs/hw_f2fs
 #define TRACE_INCLUDE_FILE trace
 #include <trace/define_trace.h>
 

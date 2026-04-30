@@ -2,7 +2,7 @@
 # huawei usb drivers
 #
 
-config HUAWEI_USB
+config HUAWEI_USB_HW
 	bool "huawei usb"
 	default n
 	help

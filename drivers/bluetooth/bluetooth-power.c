@@ -1034,7 +1034,7 @@ err:
 	return rc;
 }
 
-static int bt_power_independent_gpio()
+static int bt_power_independent_gpio(void)
 {
 	int rc = 0;
 	int bt_indep_ctrl_gpio = bt_power_pdata->bt_gpio_indep_ctrl;

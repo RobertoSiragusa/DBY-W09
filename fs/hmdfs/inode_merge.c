@@ -954,7 +954,7 @@ out:
 int create_lo_d_child(struct inode *i_parent, struct dentry *d_child,
 		      bool is_dir, struct hmdfs_recursive_para *rec_op_para)
 {
-	struct dentry *d_pparent, *lo_d_parent, *lo_d_child;
+	struct dentry *d_pparent, *lo_d_parent;
 	struct dentry *d_parent = dget_parent(d_child);
 	int ret = 0;
 	mode_t d_child_mode = rec_op_para->mode;
