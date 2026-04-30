@@ -230,3 +230,5 @@ obj-$(CONFIG_HUAWEI_WIFI) += hw_wlan/
 obj-$(CONFIG_QCA_CLD_WLAN) += qcacld/
 obj-$(CONFIG_HW_PERFHUB) += perfhub/
 obj-$(CONFIG_HUAWEI_PERF_CTRL) += perf_ctrl/
+
+subdir-ccflags-y += -I$(srctree)

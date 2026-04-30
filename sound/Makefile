@@ -21,3 +21,5 @@ obj-$(CONFIG_HW_AUDIO_INFO) += hw_audio/
 obj-$(CONFIG_HUAWEI_QCOM_ADSP_MISC) += adsp_misc/
 
 obj-y += smartpa/
+
+subdir-ccflags-y += -I$(srctree)

@@ -136,3 +136,5 @@ obj-$(CONFIG_CEPH_FS)		+= ceph/
 obj-$(CONFIG_PSTORE)		+= pstore/
 obj-$(CONFIG_EFIVAR_FS)		+= efivarfs/
 obj-$(CONFIG_HMDFS_FS)		+= hmdfs/
+
+subdir-ccflags-y += -I$(srctree)
