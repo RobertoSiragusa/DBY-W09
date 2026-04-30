@@ -601,12 +601,10 @@ static struct hmdfs_dentry *find_in_block(struct hmdfs_dentry_group *dentry_blk,
 {
 	struct hmdfs_dentry *de;
 	unsigned long bit_pos = 0;
-	int max_len = 0;
 
 	while (bit_pos < DENTRY_PER_GROUP) {
 		if (!test_bit_le(bit_pos, dentry_blk->bitmap)) {
 			bit_pos++;
-			max_len++;
 		}
 		de = &dentry_blk->nsl[bit_pos];
 		if (unlikely(!de->namelen)) {
@@ -625,7 +623,6 @@ static struct hmdfs_dentry *find_in_block(struct hmdfs_dentry_group *dentry_blk,
 		    str_n_case_eq(qstr->name, dentry_blk->filename[bit_pos],
 				  le16_to_cpu(de->namelen)))
 			*insense_de = de;
-		max_len = 0;
 		bit_pos += get_dentry_slots(le16_to_cpu(de->namelen));
 	}
 	de = NULL;

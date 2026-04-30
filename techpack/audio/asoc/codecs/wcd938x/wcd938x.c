@@ -1720,6 +1720,7 @@ static int wcd938x_codec_enable_adc(struct snd_soc_dapm_widget *w,
 			break;
 		}
 		ret |= wcd938x_tx_channel_config(component, w->shift, 0);
+		(void)ret;
 		break;
 	case SND_SOC_DAPM_POST_PMD:
 		switch (w->shift) {

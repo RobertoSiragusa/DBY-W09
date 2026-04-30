@@ -46,7 +46,7 @@
 static struct rt4801h_device_info *rt4801h_client = NULL;
 static bool is_rt4801h_device = false;
 
-static void rt4801h_enable()
+static void rt4801h_enable(void)
 {
 	if (rt4801h_client != NULL) {
 		gpiod_set_value_cansleep(gpio_to_desc(rt4801h_client->config.vsp_enable), VSP_ENABLE);

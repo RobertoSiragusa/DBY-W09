@@ -930,6 +930,7 @@ int apr_deregister(void *handle)
 	dest_id = svc->dest_id;
 	client_id = svc->client_id;
 	clnt = &client[dest_id][client_id];
+	(void)clnt;
 
 	if (svc->svc_cnt > 0) {
 		if (svc->port_cnt)

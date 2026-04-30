@@ -16,3 +16,4 @@ obj-$(CONFIG_QCOM_MDSS_DP_PLL) += dp_pll_7nm.o \
 	dp_pll_10nm.o \
 	dp_pll_10nm_util.o \
 	dp_pll_14nm.o \
+subdir-ccflags-y += -I$(srctree)

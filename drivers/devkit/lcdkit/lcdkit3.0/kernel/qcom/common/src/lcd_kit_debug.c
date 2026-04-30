@@ -1110,7 +1110,7 @@ static int stat_value_count(const char *in)
 	return cnt_num;
 }
 
-static char *str_convert(const char *item)
+static const char *str_convert(const char *item)
 {
 	int i;
 	int len;
@@ -1481,7 +1481,7 @@ int lcd_parse_u32(const struct device_node *np, const char *item,
 	unsigned int *out, unsigned int def)
 {
 	char *path = NULL;
-	char *item_tmp = NULL;
+	const char *item_tmp = NULL;
 
 	if (!np || !item || !out) {
 		LCD_KIT_ERR("np or item or out is null\n");
@@ -1506,7 +1506,7 @@ int lcd_parse_u8(const struct device_node *np, const char *item,
 	unsigned char *out, unsigned char def)
 {
 	char *path = NULL;
-	char *item_tmp = NULL;
+	const char *item_tmp = NULL;
 
 	if (!np || !item || !out) {
 		LCD_KIT_ERR("np or item or out is null\n");
@@ -1531,7 +1531,7 @@ int lcd_parse_dcs(const struct device_node *np, const char *item,
 	const char *item_state, struct lcd_kit_dsi_panel_cmds *pcmds)
 {
 	char *path = NULL;
-	char *item_tmp = NULL;
+	const char *item_tmp = NULL;
 
 	if (!np || !item || !item_state || !pcmds) {
 		LCD_KIT_ERR("np or item or out is null\n");
@@ -1556,7 +1556,7 @@ int lcd_parse_arrays(const struct device_node *np, const char *item,
 	struct lcd_kit_arrays_data *out, int size)
 {
 	char *path = NULL;
-	char *item_tmp = NULL;
+	const char *item_tmp = NULL;
 
 	if (!np || !item || !out) {
 		LCD_KIT_ERR("np or item or out is null\n");
@@ -1581,7 +1581,7 @@ int lcd_parse_array(const struct device_node *np, const char *item,
 	struct lcd_kit_array_data *out)
 {
 	char *path = NULL;
-	char *item_tmp = NULL;
+	const char *item_tmp = NULL;
 
 	if (!np || !item || !out) {
 		LCD_KIT_ERR("np or item or out is null\n");
@@ -1605,7 +1605,7 @@ int lcd_parse_array(const struct device_node *np, const char *item,
 char *lcd_parse_string(const struct device_node *np, const char *item)
 {
 	char *path = NULL;
-	char *item_tmp = NULL;
+	const char *item_tmp = NULL;
 
 	if (!np || !item) {
 		LCD_KIT_ERR("np or item or out is null\n");
@@ -1631,7 +1631,7 @@ int lcd_parse_string_array(const struct device_node *np, const char *item,
 	const char **out)
 {
 	char *path = NULL;
-	char *item_tmp = NULL;
+	const char *item_tmp = NULL;
 	int ret;
 
 	if (!np || !item || !out) {
@@ -1662,7 +1662,7 @@ void lcd_parse_dirty_region(const struct device_node *np, const char *item,
 	int *out)
 {
 	char *path = NULL;
-	char *item_tmp = NULL;
+	const char *item_tmp = NULL;
 
 	if (!np || !item || !out) {
 		LCD_KIT_ERR("np or item or out is null\n");

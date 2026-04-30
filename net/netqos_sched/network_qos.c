@@ -260,7 +260,7 @@ static void limit_speed_hard(int hard_limit_time)
 	}
 }
 
-static int get_hard_limit_time()
+static int get_hard_limit_time(void)
 {
 	int i;
 	int cur_uid;
