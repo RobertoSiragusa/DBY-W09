@@ -1,13 +1,15 @@
 # Makefile for the smartpa devkit drivers.
 #
 
-# Each configuration option enables a list of files.
-	ccflags-y += -DSMARTPAKIT_MISC_RW_PERMISSION_ENABLE
-	ccflags-y += -I$(srctree)/drivers/devkit/audiokit/
+# Include paths needed regardless of config
+ccflags-y += -I$(srctree)/drivers/devkit/audiokit/
 
+# Each configuration option enables a list of files.
 ifeq ($(TARGET_BUILD_VARIANT),eng)
+	ccflags-y += -DSMARTPAKIT_MISC_RW_PERMISSION_ENABLE
 endif
 ifdef CONFIG_HUAWEI_SMARTPAKIT_AUDIO
+	ccflags-y += -I$(srctree)/drivers/devkit/audiokit/
 endif
 obj-$(CONFIG_HUAWEI_SMARTPAKIT_AUDIO) += smartpakit.o
 

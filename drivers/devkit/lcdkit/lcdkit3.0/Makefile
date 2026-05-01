@@ -13,5 +13,6 @@ obj-$(CONFIG_LCD_KIT_QCOM)	+= kernel/qcom/adapt/
 
 obj-$(CONFIG_LCD_KIT_HISI)	+= kernel/common/displayengine/
 obj-$(CONFIG_LCD_KIT_QCOM)	+= kernel/common/displayengine/
-ccflags-y += -I$(srctree)/techpack/display/msm
+subdir-ccflags-y += -I$(srctree)/techpack/display/msm
+subdir-ccflags-y += -I$(srctree)/techpack/display/msm/sde
 subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers

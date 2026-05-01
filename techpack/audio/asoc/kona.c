@@ -42,6 +42,16 @@
 #ifdef CONFIG_HUAWEI_DSM_AUDIO
 #include <dsm_audio/dsm_audio.h>
 #endif
+/* Fallback if dsm_audio not available */
+#ifndef audio_dsm_report_info
+static inline int audio_dsm_report_info(int a, int b, const char *fmt, ...) { return 0; }
+#endif
+#ifndef AUDIO_CODEC
+#define AUDIO_CODEC 0
+#endif
+#ifndef DSM_AUDIO_CARD_LOAD_FAIL_ERROR_NO
+#define DSM_AUDIO_CARD_LOAD_FAIL_ERROR_NO 0
+#endif
 
 #define DRV_NAME "kona-asoc-snd"
 #define __CHIPSET__ "KONA "

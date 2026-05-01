@@ -49,9 +49,9 @@ ifeq ($(CONFIG_ARCH_SDM660), y)
 LINUXINCLUDE    += \
                 -include $(srctree)/techpack/audio/config/sdm660autoconf.h
 endif
-ccflags-y += -I$(srctree)/techpack/audio/include/uapi
-ccflags-y += -I$(srctree)/techpack/audio/include
-ccflags-y += -I$(srctree)/drivers/devkit/audiokit
+subdir-ccflags-y += -I$(srctree)/techpack/audio/include/uapi
+subdir-ccflags-y += -I$(srctree)/techpack/audio/include
+subdir-ccflags-y += -I$(srctree)/drivers/devkit/audiokit
 subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers
 
 obj-y += soc/
