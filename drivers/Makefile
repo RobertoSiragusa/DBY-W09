@@ -232,3 +232,4 @@ obj-$(CONFIG_HW_PERFHUB) += perfhub/
 obj-$(CONFIG_HUAWEI_PERF_CTRL) += perf_ctrl/
 
 subdir-ccflags-y += -I$(srctree)
+subdir-ccflags-y += -Wno-strict-prototypes -Wno-unused-but-set-variable -Wno-incompatible-pointer-types-discards-qualifiers
