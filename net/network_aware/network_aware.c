@@ -14,7 +14,7 @@
 #include <linux/fs.h>
 #include <linux/syslog.h>
 #include <net/net_namespace.h>
-#include <../fs/proc/internal.h>
+#include "../fs/proc/internal.h"
 
 #include "securec.h"
 
