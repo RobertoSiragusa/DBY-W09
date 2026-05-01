@@ -1227,7 +1227,7 @@ void sy3132cs_signal_fix_ratio_proc(void)
 	}
 }
 
-void sy3132cs_data_normalize_proc()
+void sy3132cs_data_normalize_proc(void)
 {
 	int i;
 
@@ -1895,7 +1895,7 @@ static void sy3132cs_fd_work(struct work_struct *work)
 	mutex_unlock(&chip->lock);
 }
 
-static void sy3132cs_algo_var_init()
+static void sy3132cs_algo_var_init(void)
 {
 	int i;
 
