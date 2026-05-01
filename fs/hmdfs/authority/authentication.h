@@ -348,5 +348,9 @@ void hmdfs_check_cred(unsigned int user_id, const struct cred *cred)
 static inline void hmdfs_check_cred(unsigned int user_id, const struct cred *cred)
 {
 }
+static inline const struct cred *hmdfs_override_creds(const struct cred *new)
+{
+	return override_creds(new);
+}
 #endif
 
