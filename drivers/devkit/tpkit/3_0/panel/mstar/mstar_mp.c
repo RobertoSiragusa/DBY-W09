@@ -4328,7 +4328,7 @@ out:
     return res;
 }
 
-MutualMpTestResult_t *mstar_get_mp_test_info()
+MutualMpTestResult_t *mstar_get_mp_test_info(void)
 {
     return mp_test_result;
 }

@@ -5608,7 +5608,7 @@ done:
 }
 EXPORT_SYMBOL(adm_get_doa_tracking_mon);
 
-static void get_ec_hal_en_flag()
+static void get_ec_hal_en_flag(void)
 {
 	struct device_node *hw_audio_node = NULL;
 	struct device_node *sub_node = NULL;

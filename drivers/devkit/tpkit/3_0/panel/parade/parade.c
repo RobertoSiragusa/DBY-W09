@@ -10660,7 +10660,7 @@ static int parade_check_cmd_status(void)
 	return NO_ERR;
 }
 
-static void parade_finish_cmd()
+static void parade_finish_cmd(void)
 {
 	if (!tskit_parade_data) {
 		TS_LOG_ERR("%s, tskit_parade_data is null\n", __func__);

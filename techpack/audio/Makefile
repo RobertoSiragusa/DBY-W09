@@ -53,4 +53,6 @@ obj-y += soc/
 obj-y += dsp/
 obj-y += ipc/
 obj-y += asoc/
+ccflags-y += -I$(srctree)/techpack/audio/include/uapi
+ccflags-y += -I$(srctree)/techpack/audio/include
 subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers
