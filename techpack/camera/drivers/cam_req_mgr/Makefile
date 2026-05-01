@@ -1,10 +1,12 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
+
 ccflags-y += -I$(srctree)/techpack/camera/include/uapi
 ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_core
 ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_smmu/
 ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_utils
 ccflags-y += -I$(srctree)/
+ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_req_mgr
 
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_req_mgr_core.o\
 				cam_req_mgr_dev.o \
@@ -13,4 +15,3 @@ obj-$(CONFIG_SPECTRA_CAMERA) += cam_req_mgr_core.o\
 				cam_mem_mgr.o \
 				cam_req_mgr_timer.o \
 				cam_req_mgr_debug.o
-ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_req_mgr
