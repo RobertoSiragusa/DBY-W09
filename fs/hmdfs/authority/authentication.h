@@ -343,3 +343,10 @@ void hmdfs_check_cred(unsigned int user_id, const struct cred *cred)
 #endif /* CONFIG_HMDFS_ANDROID */
 
 #endif
+
+#ifndef CONFIG_HMDFS_ANDROID
+static inline void hmdfs_check_cred(unsigned int user_id, const struct cred *cred)
+{
+}
+#endif
+

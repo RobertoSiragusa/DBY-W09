@@ -55,4 +55,5 @@ obj-y += ipc/
 obj-y += asoc/
 ccflags-y += -I$(srctree)/techpack/audio/include/uapi
 ccflags-y += -I$(srctree)/techpack/audio/include
+ccflags-y += -I$(srctree)/drivers/devkit/audiokit
 subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers
