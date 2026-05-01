@@ -13,3 +13,5 @@ ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_cpas/include
 
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_tasklet_util.o cam_isp_packet_parser.o
 obj-$(CONFIG_SPECTRA_CAMERA) += irq_controller/
+ccflags-y += -I$(srctree)/techpack/camera/include
+ccflags-y += -I$(srctree)/techpack/camera/include/uapi

@@ -13,3 +13,4 @@ obj-$(CONFIG_SPECTRA_CAMERA) += cam_req_mgr_core.o\
 				cam_mem_mgr.o \
 				cam_req_mgr_timer.o \
 				cam_req_mgr_debug.o
+ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_req_mgr

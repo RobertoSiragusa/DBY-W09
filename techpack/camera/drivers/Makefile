@@ -12,3 +12,6 @@ obj-$(CONFIG_SPECTRA_CAMERA) += cam_jpeg/
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_fd/
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_lrme/
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_cust/
+ccflags-y += -I$(srctree)
+ccflags-y += -I$(srctree)/techpack/camera/include
+ccflags-y += -I$(srctree)/techpack/camera/include/uapi

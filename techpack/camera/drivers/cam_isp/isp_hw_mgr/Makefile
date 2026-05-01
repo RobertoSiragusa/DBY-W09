@@ -15,3 +15,5 @@ ccflags-y += -I$(src)
 
 obj-$(CONFIG_SPECTRA_CAMERA) += hw_utils/ isp_hw/
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_isp_hw_mgr.o cam_ife_hw_mgr.o
+ccflags-y += -I$(srctree)/techpack/camera/include
+ccflags-y += -I$(srctree)/techpack/camera/include/uapi

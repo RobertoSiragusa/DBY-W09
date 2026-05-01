@@ -24,3 +24,4 @@ obj-$(CONFIG_DEBUG_FS) += \
 	sde_rotator_r1_debug.o \
 	sde_rotator_r3_debug.o \
 ccflags-y += -I$(srctree)
+CFLAGS_sde_rotator_base.o += -I$(srctree)

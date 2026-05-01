@@ -8,3 +8,5 @@ ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_cust/cam_custom_hw_mgr/
 ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_cust/cam_custom_hw_mgr/cam_custom_hw1
 
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_custom_sub_mod_soc.o cam_custom_sub_mod_dev.o cam_custom_sub_mod_core.o
+ccflags-y += -I$(srctree)/techpack/camera/include
+ccflags-y += -I$(srctree)/techpack/camera/include/uapi

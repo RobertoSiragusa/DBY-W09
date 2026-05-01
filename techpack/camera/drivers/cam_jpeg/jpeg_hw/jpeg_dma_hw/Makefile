@@ -11,3 +11,5 @@ ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_jpeg/jpeg_hw/jpeg_hw_mgr/i
 ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_jpeg/jpeg_hw/jpeg_dma_hw
 
 obj-$(CONFIG_SPECTRA_CAMERA) += jpeg_dma_dev.o jpeg_dma_core.o jpeg_dma_soc.o
+ccflags-y += -I$(srctree)/techpack/camera/include
+ccflags-y += -I$(srctree)/techpack/camera/include/uapi

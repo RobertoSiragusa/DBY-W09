@@ -18,3 +18,5 @@ obj-$(CONFIG_SPECTRA_CAMERA) += cam_custom_hw1/
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_custom_hw1/ cam_custom_csid/
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_custom_hw_mgr.o
 
+ccflags-y += -I$(srctree)/techpack/camera/include
+ccflags-y += -I$(srctree)/techpack/camera/include/uapi

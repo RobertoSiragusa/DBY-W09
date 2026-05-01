@@ -17,3 +17,5 @@ ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_utils
 
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_custom_hw_mgr/
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_custom_dev.o cam_custom_context.o
+ccflags-y += -I$(srctree)/techpack/camera/include
+ccflags-y += -I$(srctree)/techpack/camera/include/uapi

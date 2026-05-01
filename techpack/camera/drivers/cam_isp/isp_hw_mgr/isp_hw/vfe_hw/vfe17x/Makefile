@@ -15,3 +15,5 @@ ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_isp/isp_hw_mgr/isp_hw/vfe_
 ccflags-y += -I$(srctree)/techpack/camera/drivers/cam_cpas/include
 
 obj-$(CONFIG_SPECTRA_CAMERA) += cam_vfe.o
+ccflags-y += -I$(srctree)/techpack/camera/include
+ccflags-y += -I$(srctree)/techpack/camera/include/uapi
