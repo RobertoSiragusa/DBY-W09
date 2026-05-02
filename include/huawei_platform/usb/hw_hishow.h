@@ -1,4 +1,0 @@
-/* Auto-generated stub header */
-#ifndef _HUAWEI_PLATFORM_USB_HW_HISHOW_H_
-#define _HUAWEI_PLATFORM_USB_HW_HISHOW_H_
-#endif

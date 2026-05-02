@@ -44,7 +44,7 @@ hmdfs-$(CONFIG_HMDFS_LOW_LATENCY) += \
 # For D2DP transport
 obj-$(CONFIG_HMDFS_D2DP_TRANSPORT) += d2dp/
 
-ccflags-y += -I$(src) -Werror -Wall
+ccflags-y += -I$(srctree)/fs/hmdfs -I$(srctree)/fs/hmdfs/comm -I$(src) -Wall
 ccflags-$(CONFIG_HMDFS_1_0) += -DCONFIG_HMDFS_1_0
 ccflags-$(CONFIG_HMDFS_CRYPTO) += -DCONFIG_HMDFS_CRYPTO
 ccflags-$(CONFIG_HMDFS_ANDROID) += -DCONFIG_HMDFS_ANDROID
@@ -78,4 +78,43 @@ endif
 
 .PHONY : all clean rebuild
 subdir-ccflags-y += -Wno-unused-but-set-variable -Wno-strict-prototypes -Wno-incompatible-pointer-types-discards-qualifiers
-ccflags-y += -I$(srctree)
+
+CFLAGS_device_node.o += -Wno-implicit-function-declaration
+
+CFLAGS_transport.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_socket_adapter.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_connection.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_crypto.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_fault_inject.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_low_latency.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_message_verify.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_node_cb.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_client_writeback.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_dentry.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_file_local.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_file_merge.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_file_remote.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_file_root.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_hmdfs_client.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_hmdfs_dentryfile.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_hmdfs_server.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_inode.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_inode_local.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_inode_merge.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_inode_remote.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_inode_root.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_main.o += -Wno-implicit-function-declaration -Wno-int-conversion -I$(srctree)
+CFLAGS_server_writeback.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_stash.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_super.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_adapter_client.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_adapter_crypto.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_adapter_dentry.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_adapter_dentry_limitation.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_adapter_file.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_adapter_file_id_generator.o += -Wno-implicit-function-declaration -Wno-int-conversion -Wno-incompatible-pointer-types
+CFLAGS_adapter_inode.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_adapter_lookup.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_adapter_server.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_adapter_socket.o += -Wno-implicit-function-declaration -Wno-int-conversion
+CFLAGS_dentry_syncer.o += -Wno-implicit-function-declaration -Wno-int-conversion

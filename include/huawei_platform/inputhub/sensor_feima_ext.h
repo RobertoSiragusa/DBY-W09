@@ -1,4 +1,0 @@
-/* Auto-generated stub header */
-#ifndef _HUAWEI_PLATFORM_INPUTHUB_SENSOR_FEIMA_EXT_H_
-#define _HUAWEI_PLATFORM_INPUTHUB_SENSOR_FEIMA_EXT_H_
-#endif

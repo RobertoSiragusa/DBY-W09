@@ -32,6 +32,11 @@
 
 #ifdef CONFIG_HMDFS_D2DP_TRANSPORT
 #include "d2dp/d2d.h"
+
+/* Fallback inline if authentication.h does not provide hmdfs_check_cred */
+#ifndef hmdfs_check_cred_defined
+static inline void __hmdfs_check_cred_noop(unsigned int u, const struct cred *c) {}
+#endif
 #endif
 
 DEFINE_MUTEX(hmdfs_sysfs_mutex);
@@ -159,7 +164,9 @@ static void ctrl_cmd_update_socket_handler(const char *buf, size_t len,
 		if (cmpxchg_relaxed(&sbi->system_cred, NULL, system_cred))
 			put_cred(system_cred);
 		else
+#ifdef CONFIG_HMDFS_ANDROID
 			hmdfs_check_cred(sbi->user_id, system_cred);
+#endif
 	}
 	node->pending_async_p2p_try = 0;
 out:

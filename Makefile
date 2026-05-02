@@ -439,7 +439,10 @@ LINUXINCLUDE    := \
 		$(USERINCLUDE)
 
 LINUXINCLUDE	+= \
-		-I$(srctree)/lib/libc_sec/include
+		-I$(srctree)/lib/libc_sec/include \
+		-I$(srctree)/techpack/audio/include \
+		-I$(srctree)/techpack/audio/include/uapi \
+		-I$(srctree)/drivers/devkit/audiokit
 
 KBUILD_AFLAGS   := -D__ASSEMBLY__
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
@@ -447,7 +450,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
 		   -std=gnu89
-KBUILD_CPPFLAGS := -D__KERNEL__
+KBUILD_CPPFLAGS := -D__KERNEL__ -include $(srctree)/include/generated/techpack_autoconf.h
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS_MODULE  := -DMODULE
@@ -991,6 +994,7 @@ KBUILD_CFLAGS   += $(call cc-option,-Wno-incompatible-pointer-types)
 # Require designated initializers for all marked structures
 KBUILD_CFLAGS   += $(call cc-option,-Werror=designated-init)
 KBUILD_CFLAGS   += $(call cc-option,-Wno-unused-but-set-variable)
+KBUILD_CFLAGS   += $(call cc-option,-Wno-unused-function)
 
 # change __FILE__ to the relative path from the srctree
 KBUILD_CFLAGS	+= $(call cc-option,-fmacro-prefix-map=$(srctree)/=)
