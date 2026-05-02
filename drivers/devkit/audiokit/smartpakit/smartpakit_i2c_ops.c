@@ -37,19 +37,7 @@
 #ifdef CONFIG_HUAWEI_DSM_AUDIO
 #include <dsm_audio/dsm_audio.h>
 #endif
-/* Fallback defines if dsm_audio.h not available */
-#ifndef DSM_SMARTPA_BUF_SIZE
-#define DSM_SMARTPA_BUF_SIZE 1024
-#endif
-#ifndef AUDIO_SMARTPA
-#define AUDIO_SMARTPA 1
-#endif
-#ifndef audio_dsm_report_info
-static inline int audio_dsm_report_info(int a, int b, const char *fmt, ...) { return 0; }
-#endif
-#ifndef boxid_read
-static inline int boxid_read(int id) { return 0; }
-#endif
+/* DSM audio - using real dsm_audio.h */
 
 #ifdef CONFIG_HUAWEI_DEVICEBOX_AUDIO_MODULE
 #define CONFIG_HUAWEI_DEVICEBOX_AUDIO

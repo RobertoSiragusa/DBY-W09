@@ -26,14 +26,7 @@
 #include "lcd_kit_core.h"
 #include "lcd_kit_sysfs_qcom.h"
 #include "sde/sde_connector.h"
-/* Fallback stubs if sde_connector not fully available */
-#ifndef to_sde_connector
-#define to_sde_connector(x) ((struct sde_connector *)(x))
-#endif
-#ifndef _sde_connector_report_panel_dead
-static inline void _sde_connector_report_panel_dead(
-    struct sde_connector *c, bool skip_pre) {}
-#endif
+/* SDE connector - using real sde_connector.h */
 #ifdef CONFIG_APP_INFO
 #include <misc/app_info.h>
 #endif
