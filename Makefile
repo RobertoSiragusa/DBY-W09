@@ -1007,6 +1007,7 @@ KBUILD_CFLAGS   += $(call cc-option,-Wno-incompatible-pointer-types)
 # Require designated initializers for all marked structures
 KBUILD_CFLAGS   += $(call cc-option,-Werror=designated-init)
 KBUILD_CFLAGS   += $(call cc-option,-Wno-unused-but-set-variable)
+KBUILD_CFLAGS   += $(call cc-option,-Wno-array-parameter)
 KBUILD_CFLAGS   += $(call cc-option,-Wno-unused-function)
 
 # change __FILE__ to the relative path from the srctree
