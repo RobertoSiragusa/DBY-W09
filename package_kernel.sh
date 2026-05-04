@@ -5,96 +5,130 @@
 # =============================================================
 set -e
 
-KERNEL_DIR="$(cd "$(dirname "$0")" && pwd)"
-AK3_DIR="$KERNEL_DIR/AnyKernel3"
-OUT_DIR="$KERNEL_DIR/out"
-IMAGE="$KERNEL_DIR/arch/arm64/boot/Image.gz"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+IMAGE="$SCRIPT_DIR/arch/arm64/boot/Image.gz"
+OUT_DIR="$SCRIPT_DIR/out"
 DATE=$(date +%Y%m%d-%H%M)
-ZIP_NAME="DBY-W09_kernel-4.19.157_${DATE}.zip"
+STOCK_BOOT="${1:-}"
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
+RED='\033[0;31m'; GREEN='\033[0;32m'
+YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC='\033[0m'
 
 echo -e "${BLUE}========================================${NC}"
-echo -e "${BLUE}  DBY-W09 Kernel Packaging Script${NC}"
-echo -e "${BLUE}  Huawei MatePad 11 2021 / Kona${NC}"
+echo -e "${BLUE}  DBY-W09 Kernel Packaging${NC}"
+echo -e "${BLUE}  Kernel 4.19.157 / Snapdragon 865${NC}"
 echo -e "${BLUE}========================================${NC}"
 echo ""
 
-# Check Image.gz
+# --- Controllo Image.gz ---
 if [ ! -f "$IMAGE" ]; then
-    echo -e "${RED}ERROR: Image.gz not found at:${NC}"
-    echo -e "  $IMAGE"
-    echo ""
-    echo -e "${YELLOW}Build the kernel first:${NC}"
-    echo "  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CC=clang \\"
-    echo "    CLANG_TRIPLE=aarch64-linux-gnu- LD=ld.lld AR=llvm-ar NM=llvm-nm \\"
-    echo "    OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip \\"
-    echo "    HOSTCFLAGS=-fcommon -j\$(nproc) Image.gz"
+    echo -e "${RED}ERRORE: Image.gz non trovata in:${NC} $IMAGE"
+    echo "Compila prima il kernel con: make ... Image.gz"
     exit 1
 fi
+echo -e "${GREEN}✓ Image.gz trovata${NC} ($(du -sh "$IMAGE" | cut -f1))"
 
-# Check zip
-if ! command -v zip &>/dev/null; then
-    echo -e "${RED}ERROR: 'zip' not installed.${NC}"
-    echo "  sudo apt install zip"
-    exit 1
-fi
-
-# Check AnyKernel3
-if [ ! -d "$AK3_DIR" ]; then
-    echo -e "${YELLOW}AnyKernel3 not found, cloning...${NC}"
-    git clone --depth=1 https://github.com/osm0sis/AnyKernel3.git "$AK3_DIR"
-fi
-
-echo -e "${GREEN}[1/4] Copying kernel image...${NC}"
-cp "$IMAGE" "$AK3_DIR/Image.gz"
-
-echo -e "${GREEN}[2/4] Creating output directory...${NC}"
 mkdir -p "$OUT_DIR"
 
-echo -e "${GREEN}[3/4] Creating flashable zip...${NC}"
+# =============================================
+# METODO 1: Crea AnyKernel3 zip (per TWRP)
+# =============================================
+echo ""
+echo -e "${BLUE}[Metodo 1] Creazione AnyKernel3 zip...${NC}"
+
+AK3_DIR="$SCRIPT_DIR/AnyKernel3"
+ZIP_NAME="DBY-W09_kernel-4.19.157_${DATE}.zip"
+
+cp "$IMAGE" "$AK3_DIR/Image.gz"
 cd "$AK3_DIR"
 zip -r9 "$OUT_DIR/$ZIP_NAME" \
-    anykernel.sh \
-    Image.gz \
-    META-INF/ \
-    modules/ \
-    patch/ \
-    ramdisk/ \
-    tools/ \
+    anykernel.sh Image.gz META-INF/ modules/ patch/ ramdisk/ tools/ \
     -x "*.git*" "*.DS_Store*" "*.placeholder" 2>/dev/null
-
-echo -e "${GREEN}[4/4] Done!${NC}"
-echo ""
-echo -e "${BLUE}========================================${NC}"
-echo -e "${GREEN}  Output: out/${ZIP_NAME}${NC}"
-SIZE=$(du -sh "$OUT_DIR/$ZIP_NAME" | cut -f1)
-echo -e "${GREEN}  Size:   ${SIZE}${NC}"
-echo -e "${BLUE}========================================${NC}"
-echo ""
-echo -e "${YELLOW}Flashing instructions:${NC}"
-echo ""
-echo -e "${BLUE}Option A — via TWRP Recovery:${NC}"
-echo "  1. Reboot to recovery (Vol Down + Power)"
-echo "  2. Copy ${ZIP_NAME} to device"
-echo "  3. Flash via TWRP → Install"
-echo ""
-echo -e "${BLUE}Option B — via Fastboot (recommended):${NC}"
-echo "  1. Extract boot.img from your stock ROM"
-echo "  2. magiskboot unpack boot.img"
-echo "  3. cp arch/arm64/boot/Image.gz kernel"
-echo "  4. magiskboot repack boot.img"
-echo "  5. fastboot flash boot new-boot.img"
-echo "  6. fastboot reboot"
-echo ""
-echo -e "${YELLOW}Note: Disable Secure Boot / unlock bootloader first${NC}"
-
-# Cleanup
 rm -f "$AK3_DIR/Image.gz"
+cd "$SCRIPT_DIR"
 
+echo -e "${GREEN}✓ AnyKernel3 zip:${NC} out/$ZIP_NAME ($(du -sh "$OUT_DIR/$ZIP_NAME" | cut -f1))"
+
+# =============================================
+# METODO 2: boot.img con ramdisk originale
+# =============================================
 echo ""
-echo -e "${GREEN}Packaging complete!${NC}"
+echo -e "${BLUE}[Metodo 2] Creazione boot.img...${NC}"
+
+# Cerca magiskboot (x86_64) nel PATH o nella directory
+MAGISKBOOT=""
+for candidate in \
+    "$(which magiskboot 2>/dev/null)" \
+    "$SCRIPT_DIR/tools/magiskboot" \
+    "/usr/local/bin/magiskboot"; do
+    if [ -x "$candidate" ]; then
+        MAGISKBOOT="$candidate"
+        break
+    fi
+done
+
+if [ -z "$MAGISKBOOT" ]; then
+    echo -e "${YELLOW}⚠ magiskboot non trovato. Scarico...${NC}"
+    mkdir -p "$SCRIPT_DIR/tools"
+    # Scarica magiskboot x86_64 da Magisk releases
+    MAGISK_VER="v27.0"
+    curl -sL "https://github.com/topjohnwu/Magisk/releases/download/${MAGISK_VER}/Magisk-${MAGISK_VER}.apk" \
+        -o /tmp/Magisk.apk && \
+    unzip -p /tmp/Magisk.apk lib/x86_64/libmagiskboot.so > "$SCRIPT_DIR/tools/magiskboot" && \
+    chmod +x "$SCRIPT_DIR/tools/magiskboot" && \
+    MAGISKBOOT="$SCRIPT_DIR/tools/magiskboot" || \
+    echo -e "${YELLOW}⚠ Download fallito. Segui le istruzioni manuali sotto.${NC}"
+fi
+
+if [ -n "$MAGISKBOOT" ] && [ -n "$STOCK_BOOT" ] && [ -f "$STOCK_BOOT" ]; then
+    BOOT_OUT="$OUT_DIR/DBY-W09_kernel-4.19.157_${DATE}_boot.img"
+    WORK_DIR=$(mktemp -d)
+    
+    echo "  Decompongo boot.img stock..."
+    cp "$STOCK_BOOT" "$WORK_DIR/boot.img"
+    cd "$WORK_DIR"
+    "$MAGISKBOOT" unpack boot.img
+    
+    echo "  Sostituisco kernel..."
+    cp "$IMAGE" "$WORK_DIR/kernel"
+    
+    echo "  Rimpacchetto..."
+    "$MAGISKBOOT" repack boot.img "$BOOT_OUT"
+    cd "$SCRIPT_DIR"
+    rm -rf "$WORK_DIR"
+    
+    echo -e "${GREEN}✓ boot.img:${NC} out/$(basename $BOOT_OUT) ($(du -sh "$BOOT_OUT" | cut -f1))"
+else
+    if [ -z "$STOCK_BOOT" ]; then
+        echo -e "${YELLOW}⚠ Boot.img stock non fornito. Esegui:${NC}"
+        echo "  ./package_kernel.sh /path/to/stock_boot.img"
+    elif [ ! -f "$STOCK_BOOT" ]; then
+        echo -e "${YELLOW}⚠ File non trovato: $STOCK_BOOT${NC}"
+    fi
+fi
+
+# =============================================
+# RIEPILOGO E ISTRUZIONI
+# =============================================
+echo ""
+echo -e "${BLUE}========================================${NC}"
+echo -e "${GREEN}  File creati in: out/${NC}"
+ls -lh "$OUT_DIR/" 2>/dev/null
+echo -e "${BLUE}========================================${NC}"
+echo ""
+echo -e "${YELLOW}Come estrarre il boot.img stock dal tablet:${NC}"
+echo ""
+echo -e "${BLUE}  Via ADB (tablet avviato):${NC}"
+echo "    adb shell su -c 'dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/boot.img'"
+echo "    adb pull /sdcard/boot.img"
+echo ""
+echo -e "${BLUE}  Poi crea il boot.img con kernel custom:${NC}"
+echo "    ./package_kernel.sh boot.img"
+echo ""
+echo -e "${BLUE}  Flash (temporaneo - NON permanente, torna al riavvio):${NC}"
+echo "    adb reboot bootloader"
+echo "    fastboot boot out/$(ls out/*.img 2>/dev/null | head -1 | xargs basename 2>/dev/null || echo 'boot.img')"
+echo ""
+echo -e "${BLUE}  Flash permanente:${NC}"
+echo "    fastboot flash boot out/<boot.img>"
+echo "    fastboot reboot"
