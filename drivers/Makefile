@@ -216,6 +216,7 @@ obj-y                         += hwsensor/
 obj-$(CONFIG_HW_CPULOAD_NOTI) += cpuload/
 obj-y	+= devkit/tpkit/
 obj-$(CONFIG_ANTENNA_BOARD_DETECT) += antenna_board_match/
+obj-y				+= bootdevice/
 obj-$(CONFIG_HUAWEI_QCOM_MMC)   += bootdevices/
 obj-$(CONFIG_HUAWEI_QCOM_UFS)   += bootdevices/
 obj-$(CONFIG_MEM_INSPECT)   += rmeminspect/

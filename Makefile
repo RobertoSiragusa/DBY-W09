@@ -463,6 +463,7 @@ $(srctree)/include/generated/techpack_autoconf.h:
 		awk '{print "#ifndef " $$1; print "#define " $$1 " " $$2; print "#endif"}'; done >> $@ 2>/dev/null || true
 	@echo "#endif" >> $@
 
+
 KBUILD_CPPFLAGS := -D__KERNEL__ -include $(srctree)/include/generated/techpack_autoconf.h
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
